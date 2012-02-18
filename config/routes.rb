@@ -1,4 +1,4 @@
 TryEmber::Application.routes.draw do
-  root :to => 'contacts#index'
+  root :to => 'main#index'
   resources :contacts
 end

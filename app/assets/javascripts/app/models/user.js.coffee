@@ -1,0 +1,1 @@
+App.User = Ember.Object.extend()

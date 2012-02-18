@@ -1,0 +1,60 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">
+        <span>Try</span>Ember<span>.js</span>
+      </a>
+      <div class="float-right">
+        {{#if App.currentUser}}
+          <img {{bindAttr src="App.currentUser.picture" alt="App.currentUser.name"}} />
+          {{ App.currentUser.name }} |
+          {{#unless friends}}
+            <a href="#" {{action "showFriends"}}>Ver amigos</a>
+          {{else}}
+            <a href="#" {{action "hideFriends"}}>Esconder amigos</a>
+          {{/unless}}
+          |
+          <a href="#" {{action "logout"}} class="btn btn-danger">Sair</a>
+        {{else}}
+          <a href="#" {{action "login"}} class="btn btn-primary">Conectar</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" >
+  {{#if App.loading}}
+    <div class="loading">
+      Carregando...
+    </div>
+  {{/if}}
+  <div class="wrapper">
+    {{#if friends}}
+      <header class="jumbotron subhead">
+        <h1>Meus Amigos</h1>
+      </header>
+      <section>
+        <ul class="thumbnails">
+          {{#each friends}}
+            <li class="span2">
+              <a {{bindAttr href="this.link"}} target="_blank">
+                <div class="thumbnail">
+                  <img {{bindAttr src="this.picture" alt="this.name"}}>
+                  <h5>{{ this.name }}</h5>
+                </div>
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{else}}
+      <header class="jumbotron subhead">
+        <h1>Home page</h1>
+      </header>
+      <section>
+        <p>Has really nice content.<p>
+      </section>
+    {{/if}}
+  </div>
+</div>
